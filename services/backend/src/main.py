@@ -1,6 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware 
 
+from src.db.register import register_tortoise
+from src.db.config import Tortoise_ORM
+
+Tortoise.init_models(['src.db.models'], 'models')
+
 app = FastAPI()
 
 app.add_middleware(
@@ -10,6 +15,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+register_tortoise(app, config=Tortoise_ORM, generate_schemas = False)
 
 @app.get("/")
 def home():
