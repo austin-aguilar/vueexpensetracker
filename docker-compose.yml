@@ -8,6 +8,7 @@ services:
       - 5000:5000
     environment:
       - DATABASE_URL=postgres://hello_fastapi:hello_fastapi@db:5432/hello_fastapi_dev
+      - SEGRET_KEY=PUTITINREVERSETERRY7821
     volumes:
       - ./services/backend:/app
     command: uvicorn src.main:app --reload --host 0.0.0.0 --port 5000
